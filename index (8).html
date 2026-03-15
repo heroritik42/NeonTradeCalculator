@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Pro Futures Trading Toolkit</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+<h1>Pro Futures Toolkit</h1>
+
+<label>Trade Type</label>
+
+<select id="type">
+
+<option value="long">Long</option>
+
+<option value="short">Short</option>
+
+</select>
+
+
+<label>Capital ($)</label>
+
+<input id="capital" type="number">
+
+
+<label>Entry Price</label>
+
+<input id="entry" type="number">
+
+
+<label>Stop Loss %</label>
+
+<input id="lossPercent" type="number">
+
+
+<label>Take Profit %</label>
+
+<input id="profitPercent" type="number">
+
+
+<button onclick="calculate()">Calculate Trade</button>
+
+
+<div id="output"></div>
+
+<div class="credit">
+
+Developed by Neon Coder
+
+</div>
+
+</div>
+
+
+<div id="chart"></div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
