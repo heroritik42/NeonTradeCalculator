@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Pro Futures Trading Toolkit</title>
 
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">  
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <script src="https://s3.tradingview.com/tv.js"></script>
 
 </head>
-
 
 <body>
 
@@ -19,52 +22,49 @@
 
 <h1>Pro Futures Toolkit</h1>
 
+<div class="form-grid">
+
+<div>
 <label>Trade Type</label>
-
 <select id="type">
-
 <option value="long">Long</option>
-
 <option value="short">Short</option>
-
 </select>
+</div>
 
-
+<div>
 <label>Capital ($)</label>
+<input id="capital" type="number" placeholder="Enter Capital">
+</div>
 
-<input id="capital" type="number">
-
-
+<div>
 <label>Entry Price</label>
+<input id="entry" type="number" placeholder="Enter Entry Price">
+</div>
 
-<input id="entry" type="number">
-
-
+<div>
 <label>Stop Loss %</label>
+<input id="lossPercent" type="number" placeholder="Loss %">
+</div>
 
-<input id="lossPercent" type="number">
-
-
+<div>
 <label>Take Profit %</label>
+<input id="profitPercent" type="number" placeholder="Profit %">
+</div>
 
-<input id="profitPercent" type="number">
-
+</div>
 
 <button onclick="calculate()">Calculate Trade</button>
-
 
 <div id="output"></div>
 
 <div class="credit">
-
 Developed by Neon Coder
-
 </div>
-
-</div>
-
 
 <div id="chart"></div>
+
+</div>
 
 <script src="script.js"></script>
 
