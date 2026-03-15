@@ -1,21 +1,21 @@
 // TradingView Chart
 
 new TradingView.widget({
-width:500,
-height:300,
-symbol:"BINANCE:BTCUSDT",
-interval:"5",
-timezone:"Etc/UTC",
-theme:"dark",
-style:"1",
-container_id:"chart"
+    width:500,
+    height:300,
+    symbol:"BINANCE:BTCUSDT",
+    interval:"5",
+    timezone:"Etc/UTC",
+    theme:"dark",
+    style:"1",
+    container_id:"chart"
 });
 
 
 // TELEGRAM CONFIG
 
-const BOT_TOKEN="8680897603:AAG1q6d4VU-hI-xN04uxVuIM3IzoRpD0_Ac";
-const CHAT_ID="895422832";
+const BOT_TOKEN = "8680897603:AAG1q6d4VU-hI-xN04uxVuIM3IzoRpD0_Ac";
+const CHAT_ID = "895422832";
 
 function sendAlert(msg){
 
@@ -26,28 +26,28 @@ body:JSON.stringify({
 chat_id:CHAT_ID,
 text:msg
 })
-});
+}).catch(err => console.log("Telegram Error:",err));
 
 }
 
 
 
-// CALCULATOR FUNCTION
+// MAIN CALCULATOR
 
 function calculate(){
 
-let type=document.getElementById("type").value;
+let type = document.getElementById("type").value;
 
-let capital=parseFloat(document.getElementById("capital").value);
+let capital = parseFloat(document.getElementById("capital").value);
 
-let entry=parseFloat(document.getElementById("entry").value);
+let entry = parseFloat(document.getElementById("entry").value);
 
-let lossPercent=parseFloat(document.getElementById("lossPercent").value);
+let lossPercent = parseFloat(document.getElementById("lossPercent").value);
 
-let profitPercent=parseFloat(document.getElementById("profitPercent").value);
+let profitPercent = parseFloat(document.getElementById("profitPercent").value);
 
 
-// Input validation
+// INPUT VALIDATION
 
 if(!capital || !entry || !lossPercent || !profitPercent){
 
@@ -58,69 +58,86 @@ return;
 }
 
 
-// Recommended leverage
+// SAFER LEVERAGE (SL से नीचे liquidation)
 
-let leverage=Math.floor(100/lossPercent);
-
-
-// Position size
-
-let positionSize=capital*leverage;
+let leverage = Math.floor(90 / lossPercent);
 
 
-// Stop Loss & Take Profit
+// POSITION SIZE
+
+let positionSize = capital * leverage;
+
+
+// STOP LOSS & TAKE PROFIT
 
 let sl;
 let tp;
 
-if(type==="long"){
+if(type === "long"){
 
-sl=entry-(entry*lossPercent/100);
-tp=entry+(entry*profitPercent/100);
+sl = entry - (entry * lossPercent / 100);
+tp = entry + (entry * profitPercent / 100);
 
 }else{
 
-sl=entry+(entry*lossPercent/100);
-tp=entry-(entry*profitPercent/100);
+sl = entry + (entry * lossPercent / 100);
+tp = entry - (entry * profitPercent / 100);
 
 }
 
 
-// Estimated liquidation
+// ESTIMATED LIQUIDATION
 
-let liqDistance=entry/leverage;
+let liqDistance = entry / leverage;
 
 let liquidation;
 
-if(type==="long"){
+if(type === "long"){
 
-liquidation=entry-liqDistance;
+liquidation = entry - liqDistance;
 
 }else{
 
-liquidation=entry+liqDistance;
+liquidation = entry + liqDistance;
 
 }
 
 
-// Risk
+// RISK AMOUNT
 
-let riskAmount=capital*(lossPercent/100);
-
-
-// Profit
-
-let profit=capital*(profitPercent/100)*leverage;
+let riskAmount = capital * (lossPercent / 100);
 
 
-// Risk Reward
+// POTENTIAL PROFIT
 
-let rr=profitPercent/lossPercent;
+let profit = capital * (profitPercent / 100) * leverage;
 
 
-// Output
+// RISK REWARD
 
-let result=`
+let rr = profitPercent / lossPercent;
+
+
+// LIQUIDATION SAFETY CHECK
+
+let warning = "";
+
+if(type === "long" && liquidation >= sl){
+
+warning = "⚠️ WARNING: Liquidation above Stop Loss. Reduce leverage.";
+
+}
+
+if(type === "short" && liquidation <= sl){
+
+warning = "⚠️ WARNING: Liquidation above Stop Loss. Reduce leverage.";
+
+}
+
+
+// OUTPUT
+
+let result = `
 
 Position Size: $${positionSize.toFixed(2)}
 
@@ -138,13 +155,16 @@ Potential Profit: $${profit.toFixed(2)}
 
 Risk Reward Ratio: 1:${rr.toFixed(2)}
 
+${warning}
+
 `;
 
-document.getElementById("output").innerHTML=result;
+
+document.getElementById("output").innerHTML = result;
 
 
-// Telegram alert
+// TELEGRAM ALERT
 
-sendAlert("Trade Calculated\n\n"+result);
+sendAlert("📊 Trade Calculated\n\n" + result);
 
 }
