@@ -1,23 +1,29 @@
-/* Neon Background */
+/* GLOBAL */
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+/* BODY */
 
 body{
-margin:0;
-font-family:Orbitron, Arial, sans-serif;
 
-background:linear-gradient(270deg,#020617,#020617,#0f172a,#020617);
+font-family: 'Orbitron', Arial, sans-serif;
+
+background: linear-gradient(270deg,#020617,#0f172a,#020617);
 background-size:400% 400%;
 
 animation:bgMove 10s ease infinite;
 
 color:white;
 
-display:flex;
-justify-content:center;
-align-items:center;
-
 min-height:100vh;
-}
 
+padding:40px;
+
+}
 
 /* Background animation */
 
@@ -30,36 +36,42 @@ min-height:100vh;
 }
 
 
-/* Main Container */
+/* MAIN TOOL CONTAINER */
 
 .container{
 
-background:rgba(15,23,42,0.6);
+max-width:700px;
 
-backdrop-filter:blur(10px);
+margin:auto;
+
+background:rgba(15,23,42,0.7);
+
+backdrop-filter:blur(12px);
 
 padding:30px;
 
-border-radius:12px;
+border-radius:14px;
 
-width:420px;
+border:1px solid #00ffff;
 
 box-shadow:
 0 0 20px #00ffff,
-0 0 40px #00ffff33;
-
-border:1px solid #00ffff;
+0 0 60px rgba(0,255,255,0.2);
 
 }
 
 
-/* Title */
+/* TITLE */
 
 h1{
 
 text-align:center;
 
+margin-bottom:20px;
+
 color:#00ffff;
+
+font-size:28px;
 
 text-shadow:
 0 0 5px #00ffff,
@@ -69,15 +81,28 @@ text-shadow:
 }
 
 
-/* Inputs */
+/* FORM GRID */
+
+.form-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:10px;
+
+margin-bottom:10px;
+
+}
+
+
+/* INPUTS */
 
 input,select{
 
 width:100%;
 
 padding:10px;
-
-margin:8px 0;
 
 background:#020617;
 
@@ -94,7 +119,7 @@ transition:0.3s;
 }
 
 
-/* Input Glow */
+/* INPUT GLOW */
 
 input:focus,select:focus{
 
@@ -105,7 +130,7 @@ box-shadow:
 }
 
 
-/* Button */
+/* BUTTON */
 
 button{
 
@@ -132,7 +157,7 @@ transition:0.3s;
 }
 
 
-/* Button Hover */
+/* BUTTON HOVER */
 
 button:hover{
 
@@ -145,26 +170,28 @@ box-shadow:
 }
 
 
-/* Output Box */
+/* OUTPUT */
 
 #output{
 
-margin-top:15px;
+margin-top:20px;
 
 background:#020617;
 
-padding:12px;
+padding:15px;
 
-border-radius:6px;
+border-radius:8px;
 
 border:1px solid #00ffff;
 
 box-shadow:0 0 10px #00ffff55;
 
+line-height:1.6;
+
 }
 
 
-/* Credit */
+/* CREDIT */
 
 .credit{
 
@@ -181,24 +208,33 @@ text-shadow:0 0 10px #00ffff;
 }
 
 
-/* TradingView Chart */
+/* TRADINGVIEW CHART */
 
 #chart{
 
-position:fixed;
+margin-top:25px;
 
-right:20px;
+width:100%;
 
-bottom:20px;
-
-width:500px;
-
-height:320px;
+height:350px;
 
 border-radius:10px;
 
 box-shadow:
 0 0 20px #00ffff,
-0 0 40px #00ffff33;
+0 0 40px rgba(0,255,255,0.3);
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.form-grid{
+
+grid-template-columns:1fr;
+
+}
 
 }
