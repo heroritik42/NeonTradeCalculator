@@ -1,70 +1,151 @@
-body{
+/* Neon Background */
 
-background:#020617;
+body{
+margin:0;
+font-family:Orbitron, Arial, sans-serif;
+
+background:linear-gradient(270deg,#020617,#020617,#0f172a,#020617);
+background-size:400% 400%;
+
+animation:bgMove 10s ease infinite;
 
 color:white;
 
-font-family:Arial;
-
 display:flex;
-
 justify-content:center;
-
 align-items:center;
 
-height:100vh;
+min-height:100vh;
+}
+
+
+/* Background animation */
+
+@keyframes bgMove{
+
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 
 }
 
+
+/* Main Container */
 
 .container{
 
-background:#0f172a;
+background:rgba(15,23,42,0.6);
 
-padding:25px;
+backdrop-filter:blur(10px);
+
+padding:30px;
 
 border-radius:12px;
 
-width:380px;
+width:420px;
 
-box-shadow:0 0 25px cyan;
+box-shadow:
+0 0 20px #00ffff,
+0 0 40px #00ffff33;
+
+border:1px solid #00ffff;
 
 }
 
+
+/* Title */
+
+h1{
+
+text-align:center;
+
+color:#00ffff;
+
+text-shadow:
+0 0 5px #00ffff,
+0 0 20px #00ffff,
+0 0 40px #00ffff;
+
+}
+
+
+/* Inputs */
 
 input,select{
 
 width:100%;
 
-padding:8px;
+padding:10px;
 
-margin:6px 0;
+margin:8px 0;
 
-border:none;
+background:#020617;
+
+border:1px solid #00ffff;
 
 border-radius:6px;
 
+color:white;
+
+outline:none;
+
+transition:0.3s;
+
 }
 
+
+/* Input Glow */
+
+input:focus,select:focus{
+
+box-shadow:
+0 0 10px #00ffff,
+0 0 20px #00ffff;
+
+}
+
+
+/* Button */
 
 button{
 
 width:100%;
 
-padding:10px;
-
-background:cyan;
-
-border:none;
-
-cursor:pointer;
-
-font-weight:bold;
+padding:12px;
 
 margin-top:10px;
 
+border:none;
+
+border-radius:6px;
+
+background:linear-gradient(90deg,#00ffff,#38bdf8);
+
+color:black;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:0.3s;
+
 }
 
+
+/* Button Hover */
+
+button:hover{
+
+transform:scale(1.05);
+
+box-shadow:
+0 0 10px #00ffff,
+0 0 30px #00ffff;
+
+}
+
+
+/* Output Box */
 
 #output{
 
@@ -72,34 +153,52 @@ margin-top:15px;
 
 background:#020617;
 
-padding:10px;
+padding:12px;
 
 border-radius:6px;
 
+border:1px solid #00ffff;
+
+box-shadow:0 0 10px #00ffff55;
+
 }
 
+
+/* Credit */
 
 .credit{
 
 text-align:center;
 
-margin-top:10px;
+margin-top:15px;
 
-color:#22d3ee;
+font-size:14px;
+
+color:#38bdf8;
+
+text-shadow:0 0 10px #00ffff;
 
 }
 
+
+/* TradingView Chart */
 
 #chart{
 
 position:fixed;
 
-right:10px;
+right:20px;
 
-bottom:10px;
+bottom:20px;
 
 width:500px;
 
-height:300px;
+height:320px;
+
+border-radius:10px;
+
+box-shadow:
+0 0 20px #00ffff,
+0 0 40px #00ffff33;
 
 }
